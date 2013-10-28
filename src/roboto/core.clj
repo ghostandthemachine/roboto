@@ -26,7 +26,7 @@
 (def WORLD_BOUNDRIES ["1010" "1100" "1000" "1100" "1001" "0011" "0011" "0011" "0110" "1100" "0100" "1100" "0101"])
 
 ;; Predefined discrepancies
-(def DISCREPANCY [0.6561 0.0729 0.0081 0.0009 0.0001])
+(def DISCREPANCIES [0.6561 0.0729 0.0081 0.0009 0.0001])
 
 (defn boundry-bit-counts
   [bit-s boundries]
@@ -43,7 +43,7 @@
    (fn [r idx]
      (update-in r [idx idx]
        (fn [_]
-         (get DISCREPANCY (get d idx)))))
+         (get DISCREPANCIES (get d idx)))))
    (empty-matrix 13)
    (range 13)))
 
@@ -55,14 +55,14 @@
                     {:Y y :Z z :D d :O o :F f}
                     ;; calculate another iteration and recur
                     (let [cmd  (get-user-input "Enter next command")
-                          _y   (mult R f)
-                          _d   (boundry-bit-counts cmd WORLD_BOUNDRIES)
-                          _o   (calculate-o _d)
-                          _z   (mult _o _y)
-                          sum  (apply + _z)
-                          _f   (div _z sum)]
+                          y    (mult R f)
+                          d    (boundry-bit-counts cmd WORLD_BOUNDRIES)
+                          o    (calculate-o d)
+                          z    (mult o y)
+                          sum  (apply + z)
+                          f    (div z sum)]
                       (println " ")
-                      (recur (dec i) _y _z _d _o _f))))]
+                      (recur (dec i) y z d o f))))]
       (assoc results :indexes (into [] (find-max-indexes (:F results))))))
 
 (defn -main
