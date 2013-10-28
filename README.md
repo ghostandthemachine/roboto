@@ -1,6 +1,6 @@
 # Mr. Roboto
 
-# This is a CSCI 580 (A.I.) homework assignment
+This is a Chico State CSCI 580 (A.I.) homework assignment
 
 ## To run
 
