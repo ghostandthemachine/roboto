@@ -21,6 +21,11 @@
 ;; Initial F vector
 (def F (array (reduce (fn [r _] (conj r (/ 1 13))) [] (range 13))))
 
+;; World
+(def WORLD [[1  2  3  4  5]
+            [6 -1  7 -1  8]
+            [9 10 11 12 13]])
+
 ;; World boundary masks based on given initial world
 (def WORLD_BOUNDRIES ["1010" "1100" "1000" "1100" "1001" "0011" "0011" "0011" "0110" "1100" "0100" "1100" "0101"])
 
@@ -61,6 +66,7 @@
                           y    (mult R f)
                           o    (calculate-o (boundry-bit-counts cmd WORLD_BOUNDRIES))
                           z    (mult o y)
+                               ;; normalize z
                           f    (div z (apply + z))]
                       (println " ")
                       ;; update recur values
