@@ -1,12 +1,6 @@
 (ns roboto.util
   (:use [clojure.core.matrix]))
 
-(defn print-matrix [M]
-  (doseq [row (slices M)]
-    (doseq [m row]
-      (print (format "%.4f" m) " "))
-    (print "\n")))
-
 
 (defn empty-array [n]
   (array (reduce (fn [r _] (conj r 0.0)) [] (range n))))
@@ -32,16 +26,22 @@
   (map
     (fn [row]
       (apply + (map #(apply * %) (partition 2 (interleave row V)))))
-    (slices M)))
+    M))
 
 
 (defn find-max-indexes
   [V]
-  (let [max-val (apply max V)]
-    (reduce
-      (fn [r v]
-        (if (= max-val (last v))
-          (concat r [(first v)])
-          r))
-      []
-      (map (fn [i] [i (get V i)]) (range (count V))))))
+  (reduce
+    (fn [r v]
+      (if (= (apply max V) (last v))
+        (concat r [(first v)])
+        r))
+    []
+    (map (fn [i] [i (get V i)]) (range (count V)))))
+
+
+(defn print-matrix [M]
+  (doseq [row (slices M)]
+    (doseq [m row]
+      (print (format "%.4f" m) " "))
+    (print "\n")))

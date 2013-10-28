@@ -27,6 +27,7 @@
 ;; Predefined discrepancies
 (def DISCREPANCIES [0.6561 0.0729 0.0081 0.0009 0.0001])
 
+
 (defn boundry-bit-counts
   [bit-s boundries]
   (into [] (map
@@ -35,6 +36,7 @@
                      bs   (Integer/toString (bit-xor (Integer/parseInt v 2) bits) 2)]
                  (count (re-seq #"1" bs))))
              boundries)))
+
 
 (defn calculate-o
   [d]
@@ -45,6 +47,7 @@
          (get DISCREPANCIES (get d idx)))))
    (empty-matrix 13)
    (range 13)))
+
 
 ;; Calculate Robot position recursively 
 (defn calculate [iterations]
@@ -63,6 +66,7 @@
                       ;; update recur values
                       (recur (dec i) y o z f))))]
       (assoc results :indexes (into [] (find-max-indexes (:F results))))))
+
 
 (defn -main
   "Main application function to calculate robot's position in grid world."
