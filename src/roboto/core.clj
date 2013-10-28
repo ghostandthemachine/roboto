@@ -56,9 +56,11 @@
                     ;; calculate another iteration and recur
                     (let [cmd  (get-user-input "Enter next command")
                           y    (mult R f)
-                          o    (calculate-o (boundry-bit-counts cmd WORLD_BOUNDRIES))
+                          d    (boundry-bit-counts cmd WORLD_BOUNDRIES)
+                          o    (calculate-o d)
                           z    (mult o y)
-                          f    (div z (apply + z))]
+                          sum  (apply + z)
+                          f    (div z sum)]
                       (println " ")
                       ;; update recur values
                       (recur (dec i) y z d o f))))]
