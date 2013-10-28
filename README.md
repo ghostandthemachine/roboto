@@ -2,6 +2,10 @@
 
 This is a Chico State CSCI 580 (A.I.) homework assignment
 
+#### The problem
+
+Using a predefined grid world of available and blocked spaces, this program will make a best guess of a robot's location. The user enters sensory data in the form of movement directions consisting of binary flags (NSWE). Intitally, the user enters the number of iterations (directional transitions) to perform.
+
 ## To run
 
 `lein run`
