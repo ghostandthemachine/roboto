@@ -48,6 +48,7 @@
 
 ;; Calculate Robot position recursively 
 (defn calculate [iterations]
+                      ;; initial values for calculations
   (let [results (loop [i iterations y (empty-array 13) z (empty-array 13) d (empty-array 13) o (empty-matrix 13) f F]
                   (if (= i 0)
                     ;; reached last recur call, return data in a hash map
@@ -55,12 +56,11 @@
                     ;; calculate another iteration and recur
                     (let [cmd  (get-user-input "Enter next command")
                           y    (mult R f)
-                          d    (boundry-bit-counts cmd WORLD_BOUNDRIES)
-                          o    (calculate-o d)
+                          o    (calculate-o (boundry-bit-counts cmd WORLD_BOUNDRIES))
                           z    (mult o y)
-                          sum  (apply + z)
-                          f    (div z sum)]
+                          f    (div z (apply + z))]
                       (println " ")
+                      ;; update recur values
                       (recur (dec i) y z d o f))))]
       (assoc results :indexes (into [] (find-max-indexes (:F results))))))
 
