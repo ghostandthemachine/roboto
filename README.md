@@ -1,13 +1,11 @@
-# roboto
+# Mr. Roboto
 
-A Clojure library designed to ... well, that part is up to you.
+# This is a CSCI 580 (A.I.) homework assignment
 
-## Usage
+## To run
 
-FIXME
+`lein run`
 
-## License
+then the user will be prompted to input the number of iterations followed by the sensory input in binary form
 
-Copyright © 2013 FIXME
-
-Distributed under the Eclipse Public License, the same as Clojure.
+note *currently the grid world is predefined*
