@@ -26,14 +26,13 @@
   (read-line))
 
 
-(defn mult [m v]
-  (let [res* (atom [])]
-    (doseq [row (slices m)]
-      (let [t* (atom 0)]
-        (dotimes [i (count (slices m))]
-          (swap! t* + (* (get row i) (get v i))))
-        (swap! res* conj @t*)))
-    @res*))
+(defn mult
+  "Multiplies a matrix M by a vector V"
+  [M V]
+  (map
+    (fn [row]
+      (apply + (map #(apply * %) (partition 2 (interleave row V)))))
+    (slices M)))
 
 
 (defn find-max-indexes
