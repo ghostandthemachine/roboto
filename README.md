@@ -12,16 +12,16 @@ note *currently the grid world is predefined*
 
 #### Grid World
 ````clojure
- [1 2  3  4  5
-  6 x  7  x  8
-  9 10 11 12 13]
+ [1  2  3  4  5
+  6  x  7  x  8
+  9  10 11 12 13]
 ````
 
 *where x denotes a barrier*
 
 #### Sensory input (robot movement)
 
-User input is in the form of binary flags in the order: north, south, east and west (NSWE)
+User input is in the form of binary flags in the order: north, south, west and east (NSWE)
 
 for example:
 
