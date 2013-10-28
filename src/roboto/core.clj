@@ -75,4 +75,4 @@
         indexes (:indexes data)]
     (clojure.pprint/pprint data)
     (println)
-    (println "Most likely positions are:" indexes)))
+    (println (str "Most likely position" (if (> (count indexes) 1) "s are: " " is: ") indexes))))

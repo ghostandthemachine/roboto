@@ -10,7 +10,7 @@ Using a predefined grid world of available and blocked spaces, this program will
 
 `lein run`
 
-then the user will be prompted to input the number of iterations followed by the sensory input in binary form
+The the user then will be prompted to input the number of iterations followed by the sensory input in binary form
 
 NOTE: *currently the grid world is predefined*
 
