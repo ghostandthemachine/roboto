@@ -70,10 +70,11 @@
   [& args]
   (let [num     (read-string (get-user-input "Enter number of iterations to calculate:"))
         _       (println)
-        _       (println (str "Calculate with <" num "> iterations" \n))
+        _       (println (str "Calculating with <" num "> iterations"))
+        _       (println)
         data    (calculate num)
         indexes (:indexes data)]
     (println)
     (clojure.pprint/pprint data)
     (println)
-    (println "Most likely positions: " indexes)))
+    (println "Most likely positions are:" indexes)))
