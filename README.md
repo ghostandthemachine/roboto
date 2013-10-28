@@ -10,9 +10,11 @@ then the user will be prompted to input the number of iterations followed by the
 
 note *currently the grid world is predefined*
 
+````clojure
 Grid World = [1 2  3  4  5
               6 x  7  x  8
               9 10 11 12 13]
+````
 
 *where x denotes a barrier*
 
