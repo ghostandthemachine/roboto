@@ -19,24 +19,23 @@ Grid World = [1 2  3  4  5
 #### Example
 
 
-`lein run`
+````clojure
+
+lein run
 
 => Enter number of iterations to calculate:
-
-`2`
+2
 
 => Calculate with <2> iterationsn
 
 => Enter next command
-
-`1100`
+1100
  
 => Enter next command
+1110
 
-`1110`
- 
 
-`=> {:indexes [0 8],
+ => {:indexes [0 8],
  =>  :Y
  =>  [0.11213448893384917
  =>   0.016609479022843165
@@ -95,4 +94,5 @@ Grid World = [1 2  3  4  5
  =>   0.04831732574906216
  =>   0.004027180244760651]}
  
- => Most likely positions: [0 8]`
+ => Most likely positions: [0 8]
+ ````
