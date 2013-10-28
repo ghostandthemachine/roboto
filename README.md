@@ -13,7 +13,7 @@ note *currently the grid world is predefined*
 #### Grid World
 ````clojure
  [1  2  3  4  5
-  6  x  7  x  8
+  6  X  7  X  8
   9  10 11 12 13]
 ````
 
