@@ -3,13 +3,13 @@
 
 
 (defn empty-array [n]
-  (array (reduce (fn [r _] (conj r 0.0)) [] (range n))))
+  (array (reduce (fn [r _] (conj r 0)) [] (range n))))
 
 
 (defn empty-matrix
   ([n] (empty-matrix n n))
   ([m n]
-    (let [row (reduce (fn [r _] (conj r 0.0)) [] (range m))
+    (let [row (reduce (fn [r _] (conj r 0)) [] (range m))
           mat (reduce
                 (fn [r _] (conj r row))
                 []
@@ -25,10 +25,12 @@
 (defn mult
   "Multiplies a matrix M by a vector V"
   [M V]
-  (map
-    (fn [row]
-      (apply + (map #(apply * %) (partition 2 (interleave row V)))))
-    M))
+  (->>
+    (map
+      (fn [row]
+        (apply + (map #(apply * %) (partition 2 (interleave row V)))))
+      M)
+    (into [])))
 
 
 (defn find-max-indexes

@@ -30,7 +30,7 @@
 (def WORLD_BOUNDRIES ["1010" "1100" "1000" "1100" "1001" "0011" "0011" "0011" "0110" "1100" "0100" "1100" "0101"])
 
 ;; Predefined discrepancies
-(def DISCREPANCIES [0.6561 0.0729 0.0081 0.0009 0.0001])
+(def DISCREPANCIES [(/ 6561 1000) (/ 729 1000) (/ 81 1000) (/ 9 1000) (/ 1 1000)])
 
 
 (defn boundry-bit-counts
@@ -55,7 +55,7 @@
 
 
 ;; Calculate Robot position recursively 
-(defn calculate [iterations]
+(defn percieve [iterations]
                       ;; initial values for calculations
   (let [results (loop [i iterations y (empty-array 13) o (empty-matrix 13) z (empty-array 13) f F]
                   (if (= i 0)
@@ -64,11 +64,13 @@
                     ;; calculate another iteration and recur
                     (let [cmd  (get-user-input "Enter next command")
                           y    (mult R f)
-                          o    (calculate-o (boundry-bit-counts cmd WORLD_BOUNDRIES))
+                          d    (boundry-bit-counts cmd WORLD_BOUNDRIES)
+                          o    (calculate-o d)
                           z    (mult o y)
                                ;; normalize z
                           f    (div z (apply + z))]
                       (println " ")
+                      ; (clojure.pprint/pprint {:input cmd :Y y :D d :O o :Z z :F f :indexes (find-max-indexes f)})
                       ;; update recur values
                       (recur (dec i) y o z f))))]
       (assoc results :indexes (into [] (find-max-indexes (:F results))))))
@@ -79,7 +81,7 @@
   [& args]
   (let [num     (read-string (get-user-input "Enter number of iterations to calculate:"))
         _       (do (println) (println (str "Calculating with <" num "> iterations")) (println))
-        data    (calculate num)
+        data    (percieve num)
         indexes (:indexes data)]
     (clojure.pprint/pprint data)
     (println)
